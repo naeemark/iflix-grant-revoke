@@ -1,0 +1,33 @@
+{
+  "subscriptions": {
+    "Olga": {
+      "Wondertel": 89
+    },
+    "Kumar": {
+      "Wondertel": 92
+    },
+    "John": {
+      "Wondertel": 151
+    },
+    "Jenny": {
+      "Amazecom": 183
+    },
+    "Hussain": {
+      "Wondertel": 31,
+      "Amazecom": 68
+    },
+    "Farhan": {
+      "Wondertel": 89
+    },
+    "Eyad": {
+      "Amazecom": 92
+    },
+    "Bridgette": {
+      "Amazecom": 275
+    },
+    "Ahmad": {
+      "Wondertel": 337,
+      "Amazecom": 16
+    }
+  }
+}

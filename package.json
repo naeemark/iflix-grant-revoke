@@ -1,0 +1,32 @@
+{
+  "name": "iflix-grant-revoke",
+  "version": "1.0.0",
+  "description": "A take home coding test for the demonstration of skill set",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naeemark/iflix-grant-revoke.git"
+  },
+  "keywords": [
+    "iflix",
+    "grant-revoke",
+    "assignment",
+    "nodejs",
+    "supertest",
+    "mocha",
+    "chai",
+    "data-parsing"
+  ],
+  "author": "Naeem",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/naeemark/iflix-grant-revoke/issues"
+  },
+  "homepage": "https://github.com/naeemark/iflix-grant-revoke#readme"
+}
