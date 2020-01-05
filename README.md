@@ -9,7 +9,7 @@ Demonstration of Requirements understanding, proposing a solution and implementa
 * Version 1.0.0
 
 ### Problem Statement:
-[Problem Statement](INSTRUCTIONS.md)
+- [Provided as Instructions](INSTRUCTIONS.md)
 
 ### Development Cycle:
 - _TBD_
