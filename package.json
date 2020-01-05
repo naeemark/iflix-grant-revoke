@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0",
+    "node-sanitizer": "^1.0.5",
     "winston": "^3.2.1"
   },
   "repository": {

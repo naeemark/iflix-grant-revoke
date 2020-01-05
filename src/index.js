@@ -1,3 +1,6 @@
 const { subscription } = require('./services/subscription')
+const { logger } = require('./utils/logger')
 
-subscription().then((a) => console.log(a.accounts, a.amazecom, a.wondertel));
+subscription().then((subs) => {
+  logger.info(typeof (subs));
+});

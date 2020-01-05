@@ -1,3 +1,3 @@
-const amazecom = require('./amazecom.repository');
+const getAmazecom = require('./amazecom.repository');
 
-module.exports = amazecom;
+module.exports = getAmazecom;
