@@ -1,5 +1,3 @@
 const { subscription } = require('./services/subscription')
 
-const subs = subscription();
-
-console.log(subs)
+subscription().then((a) => console.log(a.accounts, a.amazecom, a.wondertel));

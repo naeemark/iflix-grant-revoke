@@ -1,6 +1,6 @@
 
-const accounts = async () => ({ name: 'accounts' });
-const amazecom = () => ({ name: 'amazecom' });
-const wondertel = () => ({ name: 'wondertel' });
+const getAccounts = require('../accounts');
+const getAmazecom = require('../amazecom');
+const getWondertel = require('../wondertel');
 
-module.exports = { accounts, amazecom, wondertel };
+module.exports = { getAccounts, getAmazecom, getWondertel };
