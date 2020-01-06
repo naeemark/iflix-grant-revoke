@@ -1,6 +1,6 @@
-const { subscription } = require('./services/subscription')
+const { getSubscriptions } = require('./services/subscriptions')
 const { logger } = require('./utils/logger')
 
-subscription().then((subs) => {
-  logger.info(typeof (subs));
+getSubscriptions().then((subscription) => {
+  logger.info(JSON.stringify(subscription));
 });
