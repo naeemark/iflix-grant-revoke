@@ -1,6 +1,6 @@
 const fs = require('fs');
-const config = require('../../config/vars');
-const { logger } = require('../../utils/logger')
+const config = require('../config/vars');
+const { logger } = require('../utils/logger')
 
 const getWondertel = async () => {
   const rawData = fs.readFileSync(config.filePathWondertel);
