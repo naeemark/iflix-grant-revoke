@@ -48,33 +48,65 @@ const getSubscriptions = async () => {
   await getInputs();
 
   const subscriptions = {};
-  for (const user of accountsData.users.slice(0, 1)) {
+  for (const user of accountsData.users) {
     const grs = await getGrantsRevokes(user.number);
-    console.log(grs);
-    const u = { owner: null, start: null, end: null, days: 0 }
+    console.log(grs); console.log(`------------------------`);
+    const u = { owner: null, A: { start: null, end: null, days: 0 }, B: { start: null, end: null, days: 0 } }
     grs.forEach((gr) => {
-      if (gr.type === 'grant' && u.owner === null) {
-        u.owner = gr.provider;
-        if (u.start === null)
-          u.start = new Date(gr.date);
-        const endDate = new Date(gr.date)
-        endDate.setMonth(u.start.getMonth() + ((gr.period) ? gr.period : 0));
-        u.end = endDate;
-        var days = (u.end.getTime() - u.start.getTime()) / (1000 * 3600 * 24);
-        u.days = days;
-      }
-      else if (gr.type === 'grant' && u.owner === gr.provider) {
-        const endDate = new Date(u.end)
-        endDate.setMonth(endDate.getMonth() + ((gr.period) ? gr.period : 0));
-        var days = (endDate.getTime() - u.start.getTime()) / (1000 * 3600 * 24);
-        u.end = endDate;
-        u.days = days;
+      if (gr.type === 'grant') {
+        if (gr.provider === 'Amazecom') {
+          if (u.owner === null) u.owner = gr.provider;
+          if (u.owner === gr.provider && (gr.period) && gr.period > 0) {
+            if (u.A.start === null) {
+              u.A.start = new Date(gr.date);
+              const endDate = new Date(gr.date);
+              endDate.setMonth(endDate.getMonth() + gr.period);
+              u.A.end = endDate;
+            } else {
+              const endDate = new Date(u.A.end);
+              endDate.setMonth(endDate.getMonth() + gr.period);
+              u.A.end = endDate;
+            }
+            u.A.days = Math.floor((u.A.end.getTime() - u.A.start.getTime()) / (1000 * 3600 * 24));
+          }
+        } else if (gr.provider === 'Wondertel') {
+          if (u.owner === null) u.owner = gr.provider;
+          if (u.owner === gr.provider && (gr.period) && gr.period > 0) {
+            if (u.B.start === null) {
+              u.B.start = new Date(gr.date);
+              const endDate = new Date(gr.date);
+              endDate.setMonth(endDate.getMonth() + gr.period);
+              u.B.end = endDate;
+            } else {
+              const endDate = new Date(u.B.end);
+              endDate.setMonth(endDate.getMonth() + gr.period);
+              u.B.end = endDate;
+            }
+            u.B.days = Math.floor((u.B.end.getTime() - u.B.start.getTime()) / (1000 * 3600 * 24));
+          }
+        }
+        console.log(u)
       }
       else if (gr.type === 'revocation' && u.owner === gr.provider) {
-        u.owner = null
+        u.owner = null;
+        if (gr.provider === 'Amazecom') {
+          const endDate = new Date(gr.date);
+          u.A.end = endDate;
+          u.A.days = Math.floor((u.A.end.getTime() - u.A.start.getTime()) / (1000 * 3600 * 24));
+        }
+        else if (gr.provider === 'Wondertel') {
+          const endDate = new Date(gr.date);
+          u.B.end = endDate;
+          u.B.days = Math.floor((u.B.end.getTime() - u.B.start.getTime()) / (1000 * 3600 * 24));
+        }
+        console.log(u)
       }
     });
-    subscriptions[user.name] = { [u.owner]: u.days }
+    const subscription = {};
+    if (u.A.days) { subscription['Amazecom'] = u.A.days }
+    if (u.B.days) { subscription['Wondertel'] = u.B.days }
+    if (Object.keys(subscription).length !== 0)
+      subscriptions[user.name] = subscription
   }
   return { subscriptions };
 };
