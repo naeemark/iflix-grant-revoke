@@ -8,8 +8,10 @@ describe('Service - getSubscriptions', () => {
     jest.resetAllMocks();
   });
 
-  it('checksum', async (done) => {
-    expect(1 + 1).toEqual(2);
-    done();
+  it('should unit test getSubscription', async () => {
+    return await service.getSubscriptions().then((result) => {
+      expect(result).toBeObject();
+      expect(result).toContainKey('subscriptions');
+    });
   });
 });

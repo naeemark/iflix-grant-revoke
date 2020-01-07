@@ -50,4 +50,24 @@ describe('Utility - logger', () => {
 
     expect(errorSpy).toHaveBeenCalledTimes(1);
   });
+
+  it('should capture error without response with stack', () => {
+    const methodName = 'method';
+    const errorMessage = 'error';
+    const stack = 'stack';
+    const error = { message: errorMessage, stack };
+    util.captureError('title', error, methodName);
+    expect(errorSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should write debug log', () => {
+    util.debug('method', 'message', {}, {});
+    expect(util.logger.debug).toHaveBeenCalledTimes(1);
+  });
+
+  it('should write warn log', () => {
+    util.warn('method', 'message', {}, {});
+    expect(util.logger.warn).toHaveBeenCalledTimes(1);
+  });
+
 });
