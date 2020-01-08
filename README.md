@@ -11,13 +11,23 @@ Demonstration of Requirements understanding, proposing a solution and implementa
 ### Problem Statement:
 - [Provided as Instructions](INSTRUCTIONS.md)
 
+### Submission:
+- [Provided Sumbission file](SUBMISSION.md)
+
 ### Development Cycle:
-- _TBD_
+- Distributes the whole development into Issues
+- Pleas visit the [ISSUES_PAGE](https://github.com/naeemark/iflix-grant-revoke/issues?q=is%3Aissue+is%3Aclosed) for dev cycle
 
 
 ### Application Flow ###
 
-- _TBD_
+- A: Parses the provided inputs from directory [data](/data)
+- B: Iterates the `Users`
+- C: Iterate each provider to find `grants` and `revocations` for each user
+- D: Sorts `grants` and `revocations` by the `issuance date`
+- E: Apply `grants` and `revocations` for each user
+- F: Convert `User` to a `subscription`
+- G: Write `subscriptions` object to [output file](/output/result.json)
 
 ## How do I get set up? ##
 
@@ -29,6 +39,18 @@ To set-up the project locally you need to clone this repo, from `master` or `dev
 Please sync and resolve dependencies by using
 - `npm install`
 
+Set environment variables:
+- `cp .env.example .env`
+
+### Start App
+- `npm run start`    
+    OR
+- `sh bin/run` (Installs dependencies first as a part of script)
+
+### Test App
+- `npm run test`   
+   OR
+- `sh bin/test` (Installs dependencies first as a part of script)
 
 ### Pre-reqs
 
@@ -55,7 +77,7 @@ Please sync and resolve dependencies by using
 - `SonarCloud`
 
 ## Distribution ##
-- _TBD_
+- A git repository
 
 ## Deployment ##
 - _TBD_
