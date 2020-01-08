@@ -3,7 +3,10 @@
 echo "Instal dependencies"
 npm install
 
-echo "Run app"
+echo "Run test/fixtures"
+jest -t 'App - TestFixture'
+
+echo "Run app tests"
 npm run test
 
 echo "Opens coverage report to the default browser"

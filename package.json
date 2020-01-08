@@ -4,6 +4,7 @@
   "description": "A take home coding test for the demonstration of skill set",
   "main": "src/index.js",
   "directories": {
+    "src": "src",
     "test": "test"
   },
   "scripts": {
