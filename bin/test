@@ -5,3 +5,6 @@ npm install
 
 echo "Run app"
 npm run test
+
+echo "Opens coverage report to the default browser"
+open coverage/lcov-report/index.html 
