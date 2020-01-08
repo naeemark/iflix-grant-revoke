@@ -7,32 +7,46 @@ let accountsData = null;
 let amazecomData = null;
 let wondertelData = null;
 
+/**
+ * Gets and restructure the inputs
+ */
 const syncInputs = async () => {
+
   accountsData = await getAccounts();
   amazecomData = await restructure(PROVIDER_AMAZECOM, await getAmazecom());
   wondertelData = await restructure(PROVIDER_WONDERTEL, await getWondertel());
 };
 
+/**
+ * Creates and return a subscription object based on the param
+ * @param {*} account   a user account
+ */
 const getSubscription = async (account) => {
+
   const subscription = {};
   if (account.amazecom.days) { subscription[PROVIDER_AMAZECOM] = account.amazecom.days }
   if (account.wondertel.days) { subscription[PROVIDER_WONDERTEL] = account.wondertel.days }
+  logger.info(JSON.stringify(subscription));
   return subscription;
 }
 
+/**
+ * Exposes a method to iterate all the accounts and finds grants and revocations
+ * from providers
+ */
 const getSubscriptions = async () => {
-
   await syncInputs();
   const subscriptions = {};
 
   for (const user of accountsData.users) {
     const grantsRevokes = await getGrantsRevokes(user.number, amazecomData, wondertelData);
-    // console.log(grantsRevokes); console.log(`------------------------`);
+    logger.info(JSON.stringify(grantsRevokes));
     const account = { owner: null, amazecom: { start: null, end: null, days: 0 }, wondertel: { start: null, end: null, days: 0 } }
 
     grantsRevokes.forEach((grantOrRevoke) => {
-      if (grantOrRevoke.type === TYPE_GRANT) {
 
+      // Conditional block for TYPE_GRANT
+      if (grantOrRevoke.type === TYPE_GRANT) {
         if (account.owner === null) account.owner = grantOrRevoke.provider;
 
         const providerKey = grantOrRevoke.provider.toLowerCase();
@@ -50,6 +64,7 @@ const getSubscriptions = async () => {
           account[providerKey].days = calculateDays(account[providerKey]);
         }
       }
+      // Conditional block for TYPE_REVOKE
       else if (grantOrRevoke.type === TYPE_REVOKE && account.owner === grantOrRevoke.provider) {
         account.owner = null;
         const providerKey = grantOrRevoke.provider.toLowerCase();
