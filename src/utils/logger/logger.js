@@ -1,6 +1,6 @@
 const winston = require('winston');
 const sanitizer = require('node-sanitizer');
-const { serviceName, sanitizedFields } = require('../../config/vars');
+const { serviceName } = require('../../config/vars');
 
 const {
   combine,
@@ -28,25 +28,6 @@ const transports = [new winston.transports.Console(options.console)];
 const logger = winston.loggers.add(process.env.NODE_ENV, {
   transports
 });
-
-// create a stream object with a 'write' function that will be used by `loggerMiddleware`
-logger.stream = {
-  write: (req) => {
-    logger.info(`${req.method} request to ${req.url}`, {
-      body: sanitizer(req.body, sanitizedFields),
-      query: sanitizer(req.query, sanitizedFields)
-    });
-  }
-};
-
-logger.streamError = {
-  write: (req) => {
-    logger.error(`${req.method} request to ${req.url}`, {
-      body: sanitizer(req.body, sanitizedFields),
-      query: sanitizer(req.query, sanitizedFields)
-    });
-  }
-};
 
 /**
  * Debug Log

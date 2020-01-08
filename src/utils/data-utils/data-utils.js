@@ -1,4 +1,4 @@
-const { TYPE_GRANT, TYPE_REVOKE } = require('./constants');
+const { TYPE_GRANT, TYPE_REVOKE } = require('../constants');
 
 const calculateDays = (provider) => {
   return Math.floor((provider.end.getTime() - provider.start.getTime()) / (1000 * 3600 * 24));
