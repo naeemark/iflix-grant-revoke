@@ -11,6 +11,9 @@ Demonstration of Requirements understanding, proposing a solution and implementa
 ### Problem Statement:
 - [Provided as Instructions](INSTRUCTIONS.md)
 
+### Submission:
+- [Provided Sumbission file](SUBMISSION.md)
+
 ### Development Cycle:
 - Distributes the whole development into Issues
 - Pleas visit the [ISSUES_PAGE](https://github.com/naeemark/iflix-grant-revoke/issues?q=is%3Aissue+is%3Aclosed) for dev cycle
