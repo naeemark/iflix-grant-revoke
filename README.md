@@ -24,7 +24,7 @@ Demonstration of Requirements understanding, proposing a solution and implementa
 - D: Sorts `grants` and `revocations` by the `issuance date`
 - E: Apply `grants` and `revocations` for each user
 - F: Convert `User` to a `subscription`
-- G: Write `subscriptions` object to [output file](/data/result.json)
+- G: Write `subscriptions` object to [output file](/output/result.json)
 
 ## How do I get set up? ##
 
@@ -40,13 +40,13 @@ Set environment variables:
 - `cp .env.example .env`
 
 ### Start App
-- `npm run start`
-OR
+- `npm run start`    
+    OR
 - `sh bin/run` (Installs dependencies first as a part of script)
 
 ### Test App
-- `npm run test`
-OR
+- `npm run test`   
+   OR
 - `sh bin/test` (Installs dependencies first as a part of script)
 
 ### Pre-reqs
